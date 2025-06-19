@@ -45,3 +45,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Kick backend is running on port ${PORT}`);
 });
+// مسار افتراضي لعرض رسالة عند زيارة /
+app.get("/", (req, res) => {
+  res.send("✅ Kick Backend is running.");
+});
