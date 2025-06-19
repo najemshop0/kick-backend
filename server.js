@@ -8,12 +8,11 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// بيانات التطبيق من لوحة المطورين في Kick
 const CLIENT_ID = "01JY41WPVVWSBQK0AYBMCVKXYS";
 const CLIENT_SECRET = "249c6af7d30d09f4b06b2776a2781fd37f388078dcd0a7508b9596e86f9f240c";
 const REDIRECT_URI = "https://najemshop-5ceb5.web.app/auth/callback";
 
-// مسار لاستقبال الكود وتبديله بـ access_token
+// مسار تبادل الكود مع التوكن
 app.post("/exchange-token", async (req, res) => {
   const { code, code_verifier } = req.body;
 
@@ -41,8 +40,8 @@ app.post("/exchange-token", async (req, res) => {
   }
 });
 
-// بدء الخادم
-const PORT = 3000;
+// ✅ هنا التعديل المهم: استخدم المنفذ الديناميكي في Render
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-  console.log(`🚀 Kick backend is running on http://localhost:${PORT}`);
+  console.log(`🚀 Kick backend is running on port ${PORT}`);
 });
